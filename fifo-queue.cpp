@@ -2,6 +2,20 @@
 #include <iostream>
 using namespace std;
 
+/*
+    Usage:
+    
+    queue<int>
+    q.push(i)
+    q.size() 
+    q.front()
+    q.back()
+    q.empty()
+    q.pop() 
+    q1.swap(q2)
+    q3.emplace(1)
+*/
+
 int main()
 {
     //declare
