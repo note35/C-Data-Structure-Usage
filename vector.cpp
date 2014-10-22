@@ -1,6 +1,41 @@
 #include <iostream>
 #include <vector>
 using namespace std;
+
+/*
+Iterator Usage:    
+    vector<int>::iterator it
+    vector<int>::reverse_iterator rit
+
+    it.begin()
+    it.end()
+    rit.rbegin()
+    rit.rend()
+
+
+Vector Usage:
+    vector<int> e;
+    
+    e.size()
+    e.resize()
+    e.empty()
+    
+    e.at()
+    e.front()
+    e.back()
+
+    e.push_back()
+    e.pop_back()
+    e.insert()
+    e.erase()
+    e.clear()
+
+    e.get_allocator()
+        e.get_allocator().allocate()
+        e.get_allocator().construct
+        e.get_allocator().deallocate()
+        e.get_allocator().destroy()
+*/
 int main ()
 {
     //basic vector declaration
@@ -96,6 +131,15 @@ int main ()
     e.insert (it+1, 10);                        //1 10 2 3 4 1
     e.insert (it, 2, 20);                       //20 20 1 10 2 3 4 1
 
+    //access()
+    cout << "e.at(2): " << e.at(2) << endl;     //1
+    cout << "e.front(): " << e.front() << endl; //20
+    cout << "e.back(): " << e.back() << endl;   //1
+    //data c++11 => direct change vector value by pointer
+    int *p1 = e.data();
+    cout << "e.data(): " << *p1 << endl;        //20
+
+
     //erase()
     it = e.begin();
     e.erase (it, it+3);                         //10 2 3 4 1
@@ -114,17 +158,17 @@ int main ()
 
     //get_allocator()
     //It's not common. Array can build-in every vector.
-    int *p, i;
-    p = e.get_allocator().allocate(1);
-    e.get_allocator().construct(&p[0],100);
+    int *p2, i;
+    p2 = e.get_allocator().allocate(1);
+    e.get_allocator().construct(&p2[0],100);
     cout << "e.get_allocator(): ";
     for (i=0; i<1; i++)
     { 
-        cout << p[i] << " ";                     
+        cout << p2[i] << " ";                     
     }
     cout << endl;
-    e.get_allocator().destroy(&p[0]);
-    e.get_allocator().deallocate(p,1);
+    e.get_allocator().destroy(&p2[0]);
+    e.get_allocator().deallocate(p2,1);
 
     return 0;
 }
