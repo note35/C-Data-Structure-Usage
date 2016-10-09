@@ -21,5 +21,7 @@ A lot of Sinon Programs with D.O.H framework.
 - node ../../dojo/dojo.js load=doh test=sinon_doh_demo/DOHStyle.js
 - node ../../dojo/dojo.js load=doh test=sinon_doh_demo/SinonTest.js
 
-PS: doh is run by dojo / dojo is run by node
-PS: test=XXXTest, XXXTest can not use ../
+# Note:
+
+- PS: doh is run by dojo / dojo is run by node
+- PS: test=XXXTest, XXXTest can not use ../
