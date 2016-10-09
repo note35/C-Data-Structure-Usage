@@ -7,6 +7,7 @@ This folder contain lots small test program.
 - bash_read_line/do.sh
 - express-curl-xml/
 - flask_classy_demo/
+- sinon_doh_demo/
 
 # Material:
 
