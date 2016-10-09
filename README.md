@@ -4,6 +4,7 @@ My StackOverflow Solution:
     setlocale.c
     chrono.cpp
     bash_read_line/do.sh
+    express-curl-xml/*
 
 Material:
     vector.cpp
