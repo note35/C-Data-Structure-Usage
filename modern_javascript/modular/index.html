@@ -1,0 +1,48 @@
+</html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+    <div id="peopleModule">
+        <h1>People</h1>
+        <input placeholder="name" type="text">
+
+        <button id="addPerson">Add Person</button>
+        <ul id="people">
+            <script id="people-template" type="text/template">
+            {{#people}}
+                <li>
+                    <span>{{.}}</span>
+                    <i class="del">X</i>
+                </li>
+            {{/people}}
+            </script>
+        </ul>
+    </div>
+
+
+<!--
+    <script src="stage0_spaghetti/spaghetti.js"></script>
+-->
+<!--
+    <script src="stage1_modular/modular.js"></script>
+-->
+<!--
+    <script src="stage2_revealing/revealing.js"></script>
+-->
+
+    <hr/>
+
+    <div id="statsModule">
+        <script id="stats-template" type="text/template">
+            number: {{people}}
+        </script>
+    </div>
+
+    <script src="stage3_pubsub/events.js"></script>
+    <script src="stage3_pubsub/pubsub.js"></script>
+
+</body>
+</html>
