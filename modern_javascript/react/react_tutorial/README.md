@@ -87,3 +87,73 @@
         </div>
       );
     }
+
+###3-state-props
+
+1.this.state === null //預設值為null
+
+    export default class Layout extends React.Component {
+      render() {
+        //this.state === null
+        return (
+          <div></div>
+        );
+      }
+    }
+
+2.state必須要在建構子設定
+
+    export default class Layout extends React.Component {
+      constructor() {
+        super();
+        this.state = {stats: "works"};
+      }
+      render() {
+        return (
+          <div>{this.stats.stats}</div>
+        );
+      }
+    }
+
+3.state特性
+
+    // 只要state內的值變動，使用到該值的dom也會跟著變動
+    // 只有使用該值的dom會變動，其他dom都不會變動
+
+    export default class Layout extends React.Component {
+      constructor() {
+        super();
+        this.state = {stats: "works"};
+      }
+      render() {
+        setTimeout(() => {
+            this.setState({stats: "not work"});
+        }, 1000);
+        return (
+          <div>{this.stats.stats}</div>
+        );
+      }
+    }
+
+    // Chrome -> F12 console -> 下方拉開選單 -> Rendering -> Painting Flashing
+
+4.props特性
+
+    // 從最外層component開始往內傳遞變數時使用props
+    // 舉例來說
+
+    // <Layout /> 裡面定義 title
+    title = "Title";
+    // 並傳入 <Header /> 中
+    <Header title={title} />
+
+    // <Header /> 裡面可以透過 this.props 取得
+    console.log(this.props); //{title: "Title"}
+    // 並傳入 <Title /> 中
+    <Title title={this.props.title}>
+
+    // <Title /> 裡面可以透過 this.props 取得Title並顯示
+    {this.props.title}
+
+    // 可以把props塞進去stats
+    // 如此一來內層的components就可以用到外層給的props，並且只更改細部的dom
