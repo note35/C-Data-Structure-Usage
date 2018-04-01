@@ -1,4 +1,4 @@
-This is a simple demo for flask-classy.
+This is a simple demo for `flask-classy` and `blueprint`.
 
 # Requirement
 
@@ -11,5 +11,8 @@ This is a simple demo for flask-classy.
 
 # Presentation
 
-- Index: http://127.0.0.1:5000/my
-- Get: http://127.0.0.1:5000/my/<id>
+- Get Index: http://127.0.0.1:5000/classy
+- Get Page: http://127.0.0.1:5000/classy/<id>
+- Get Index: http://127.0.0.1:5000/blueprint
+
+*Query only accepts under case letter, upper case letter class name will be reduce automatically.*

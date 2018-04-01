@@ -1,6 +1,7 @@
 from flask_classy import FlaskView
 
-class myView(FlaskView):
+
+class ClassyView(FlaskView):
     def index(self):
         return "this is index"
 
