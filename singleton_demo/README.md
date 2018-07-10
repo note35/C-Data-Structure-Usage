@@ -32,11 +32,6 @@ class LazySingleton:
         if not cls.__singleton_instance:
             cls.__singleton_instance = object()
         return cls.__singleton_instance
-
-
-print(LazySingleton._LazySingleton__singleton_instance)  # None
-ls = LazySingleton.instance()
-print(LazySingleton._LazySingleton__singleton_instance)  # <object object at 0x000000000>
 ```
 
 ### Eager Instantiation Singleton in Python
@@ -48,8 +43,6 @@ class EagerSingleton:
     @classmethod
     def instance(cls):
         return cls.__singleton_instance
-
-print(EagerSingleton._EagerSingleton__singleton_instance)  # <object object at 0x000000000>
 ```
 
 ### Thread safe?
@@ -71,5 +64,33 @@ class LazySingletonThreadSafe:
             with cls.__singleton_lock:
                 if not cls.__singleton_instance:
                     cls.__singleton_instance = object()
+        return cls.__singleton_instance
+```
+
+### Renew instance periodically
+
+For some usecases, singleton instance needs to be updated periodically since the original information is outdated. For example, accessing external service which is updated every hour, adding a timer to update your singleton every hour will be an ideal solution to make the instance updated without heavy setup every time. Note, since this pattern can not assure the refresh rate of your data, if your data has zero tolerance to be outdated, this solution will not work.
+
+```python
+import threading
+import time
+
+
+TIMEOUT = 5  # renew instance every 5 seconds
+
+
+class LazySingletonThreadSafeRenew:
+    __singleton_lock = threading.Lock()
+    __singleton_instance = None
+    __start_time = 0
+
+    @classmethod
+    def instance(cls):
+        now = time.time()
+        if not cls.__singleton_instance or now - cls.__start_time > TIMEOUT:
+            with cls.__singleton_lock:
+                if not cls.__singleton_instance or now - cls.__start_time > TIMEOUT:
+                    cls.__singleton_instance = object()
+                    cls.__start_time = now
         return cls.__singleton_instance
 ```
